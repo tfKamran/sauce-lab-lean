@@ -9,11 +9,11 @@ const Utils = {};
 
 Utils.driver = null;
 
-Utils.exitHandler = function(options, err) {
+Utils.exitHandler = function (options, err) {
   Utils.getDriver().quit();
 };
 
-Utils.getDriver = function() {
+Utils.getDriver = function () {
   if (Utils.driver == null) {
     Utils.driver = new selenium.Builder()
       .forBrowser(selenium.Browser.CHROME)

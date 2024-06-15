@@ -13,14 +13,11 @@ Authentication.login = async function (username, password) {
   await Utils.getDriver().findElement(Constants.Selectors.txtPassword).sendKeys(password);
 
   await Utils.getDriver().findElement(Constants.Selectors.btnLogin).click();
-
-  await Utils.waitForItemToLoadSafe(Constants.Selectors.itemRandom);
 };
 
 Authentication.logout = async function () {
   await Utils.clickElementSafe(Constants.Selectors.menuBurger);
-  // await Utils.waitForItemToShowUpSafe(Constants.Selectors.menuClose);
-  await Utils.sleep(2000);
+  await Utils.sleep(300); // Wait for animation
   await Utils.clickElementSafe(Constants.Selectors.btnLogout);
 
   await Utils.waitForItemToLoadSafe(Constants.Selectors.btnLogin);
@@ -33,6 +30,8 @@ describe('# Authentication', function () {
 
   it('should be able to login with standard user', async function () {
     await Authentication.login(Constants.USERNAME, Constants.PASSWORD);
+
+    await Utils.waitForItemToLoadSafe(Constants.Selectors.itemRandom);
 
     assert.equal((await Utils.findElementSafe(Constants.Selectors.btnLogin)), null,
       'Login button should not be visible after logging in');
