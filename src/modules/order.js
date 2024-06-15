@@ -16,8 +16,13 @@ Order.addItemToCart = async function (index) {
   await Utils.clickElementSafe(By.css(`.inventory_item:nth-child(${index}n) .btn`));
 };
 
-Order.startCheckout = async function () {
+Order.openCart = async function () {
   await Utils.clickElementSafe(Constants.Selectors.btnCart);
+
+  await Utils.waitForItemToLoadSafe(Constants.Selectors.btnCheckout);
+};
+
+Order.startCheckout = async function () {
   await Utils.clickElementSafe(Constants.Selectors.btnCheckout);
 
   await Utils.waitForItemToLoadSafe(Constants.Selectors.txtCheckoutFirstName);
@@ -57,10 +62,13 @@ describe('# Order', function () {
   });
 
   it('should be able to continue with checkout while fillig up', async function () {
+    await Order.openCart();
+
+    // Check if all three items are available in cart
+    assert.notEqual(await Utils.findElementSafe(By.css(`.cart_item:nth-child(3n) .btn`)), null);
+
     await Order.startCheckout();
     await Order.fillCheckoutDetails();
-    
-    // TODO add asserts
   });
 
   it('should be able to continue with checkout while fillig up', async function () {
