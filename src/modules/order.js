@@ -72,7 +72,7 @@ describe('# Order', function () {
     await Order.fillCheckoutDetails();
   });
 
-  it('should be able to continue with checkout while fillig up', async function () {
+  it('should be showing correct total pricing that adds up to individual items', async function () {
     let price = 0;
 
     for (let index = 3; index <= 5; index++) {
@@ -83,6 +83,14 @@ describe('# Order', function () {
     assert.equal(total, price, 'Total of individual items should reflect in total price')
 
     await Order.finishCheckout();
+  });
+
+  it('should not allow to checkout with 0 items in the cart', async function () {
+    await Order.openCart();
+
+    // Check if all three items are available in cart
+    assert.equal(await Utils.findElementSafe(Constants.Selectors.btnCheckout), null,
+      'User is able to checkout 0 items');
   });
 
   after(async function () {
