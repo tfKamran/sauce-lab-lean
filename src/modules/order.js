@@ -65,14 +65,23 @@ describe('# Order', function () {
     await Order.openCart();
 
     // Check if all three items are available in cart
-    assert.notEqual(await Utils.findElementSafe(By.css(`.cart_item:nth-child(3n) .btn`)), null);
+    assert.notEqual(await Utils.findElementSafe(By.css(`.cart_item:nth-child(5) .btn`)), null,
+      'There should be 3 items in the cart');
 
     await Order.startCheckout();
     await Order.fillCheckoutDetails();
   });
 
   it('should be able to continue with checkout while fillig up', async function () {
-    // Check total price and assert
+    let price = 0;
+
+    for (let index = 3; index <= 5; index++) {
+      price += +(await (await Utils.findElementSafe(By.css(`.cart_item:nth-child(${index}) .inventory_item_price`))).getText()).substring(1);
+    }
+    const total = (await (await Utils.findElementSafe(By.css(`.summary_subtotal_label`))).getText()).substring(13);
+
+    assert.equal(total, price, 'Total of individual items should reflect in total price')
+
     await Order.finishCheckout();
   });
 
