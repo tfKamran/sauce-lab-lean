@@ -50,10 +50,6 @@ describe('# Authentication', function () {
     assert.notEqual((await Utils.findElementSafe(Constants.Selectors.txtLoginError)), null,
       'Error about the credentials should be visible');
   });
-
-  after(function () {
-    Utils.getDriver().quit();
-  });
 });
 
 module.exports = Authentication;

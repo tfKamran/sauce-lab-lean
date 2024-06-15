@@ -1,7 +1,10 @@
-#! /usr/bin/env node
+const Utils = require('./utils');
 
-const { execSync } = require('child_process');
+describe('# Sauce Labs', function () {
+  after(function () {
+    Utils.getDriver().quit();
+  });
 
-// Run mocha recursively over all modules
-console.log('Run "npm test" for better formatted report');
-console.log(execSync('mocha src/modules --recursive --timeout 1000000', { encoding: 'UTF-8' }));
+  require('./modules/authentication');
+  require('./modules/order');
+});

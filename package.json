@@ -4,8 +4,8 @@
   "description": "Automation test code for Sauce Labs",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "test": "mocha src/modules --recursive --timeout 1000000"
+    "start": "mocha src/index.js --timeout 1000000",
+    "test": "mocha src/index.js --timeout 1000000"
   },
   "repository": {
     "type": "git",
