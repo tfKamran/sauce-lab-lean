@@ -5,6 +5,7 @@
 - [Node.js](https://nodejs.org/en/download/package-manager)
 - [NPM](https://docs.npmjs.com/cli/v10/configuring-npm/install)
 - [Chrome Web Driver](https://chromedriver.storage.googleapis.com/index.html)
+- [Firefox Web Driver](https://github.com/mozilla/geckodriver/releases/)
 
 ## Installation
 
@@ -16,7 +17,7 @@
 
 ## Setup
 
-This repository contains a collection of automated web tests utilizing Selenium with the Chrome Web Driver. These tests open a webpage in Google Chrome and execute a series of test cases to verify application functionality.
+This repository contains a collection of automated web tests utilizing Selenium with the Firefox and Chrome Web Drivers. These tests open a webpage in Mozilla Firefox or Google Chrome and execute a series of test cases to verify application functionality.
 
 The test suite is built using the popular JavaScript testing framework, [Mocha]([https://mochajs.org/](https://mochajs.org/)).
 

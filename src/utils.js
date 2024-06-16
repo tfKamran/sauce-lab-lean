@@ -1,5 +1,6 @@
 const selenium = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
+const firefox = require('selenium-webdriver/firefox');
 
 const until = selenium.until;
 
@@ -16,7 +17,7 @@ Utils.exitHandler = function (options, err) {
 Utils.getDriver = function () {
   if (Utils.driver == null) {
     Utils.driver = new selenium.Builder()
-      .forBrowser(selenium.Browser.CHROME)
+      .forBrowser(selenium.Browser.FIREFOX) // To run no Chrome change to `.forBrowser(selenium.Browser.CHROME)`
       .build();
 
     // Handle exit
